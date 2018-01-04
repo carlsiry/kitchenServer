@@ -8,11 +8,22 @@ import { Component } from '@nestjs/common';
 import { config } from '../config/config.provider';
 
 // 取得环境配置并赋给常量
-const endPoint: string = config.couchbase.endPoint;
-const username: string = config.couchbase.username;
-const password: string = config.couchbase.password;
-const bucketName: string = config.couchbase.bucket;
-const showQuery: boolean = config.couchbase.showQuery;
+// 本地数据库
+let localEnvironment = true;
+
+let endPoint: string = config.couchbase.endPoint;
+let username: string = config.couchbase.username;
+let password: string = config.couchbase.password;
+let bucketName: string = config.couchbase.bucket;
+let showQuery: boolean = config.couchbase.showQuery;
+
+if (localEnvironment) {
+    endPoint = config.localCouchbase.endPoint;
+    username = config.localCouchbase.username;
+    password = config.localCouchbase.password;
+    bucketName = config.localCouchbase.bucket;
+    showQuery = config.localCouchbase.showQuery;
+}
 
 // 配置sql语句查询对象
 const N1qlQuery = couchbase.N1qlQuery;
@@ -40,7 +51,7 @@ export class DbService {
      * @param sql语句
      *
      */
-    query(sql) {
+    query(sql: string) {
         if (showQuery) {
             console.log('QUERY -->', sql);
         }
@@ -50,6 +61,7 @@ export class DbService {
         return new Promise((resolve, reject) => {
             bucket.query(query, (error, data) => {
                 if (error) {
+                    console.log('查询出错了……');
                     reject(error);
                 }
                 resolve(data);

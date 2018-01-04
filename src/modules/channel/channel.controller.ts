@@ -15,7 +15,7 @@ export class ChannelController {
     @Get()
     async getById(@Body() channel: Channel) {
         console.log(channel)
-        const sqlStr = `select META().id,channelId,pointName, pointAdress
+        const sqlStr = `select META().id, channelId, pointName, pointAdress
           from ${ bucket._name }
           where className="CompanyC" and channelId="${channel.channelId}"`;
         return await this.dbService.query(sqlStr);
