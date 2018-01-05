@@ -9,7 +9,7 @@ import { config } from '../config/config.provider';
 
 // 取得环境配置并赋给常量
 // 本地数据库
-let localEnvironment = true;
+let localEnvironment = false;
 
 let endPoint: string = config.couchbase.endPoint;
 let username: string = config.couchbase.username;

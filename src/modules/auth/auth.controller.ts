@@ -25,7 +25,7 @@ export class AuthController {
 
     /**
      * 小程序客户端调用此接口 换取用户登录状态信息。 -- 2018.01.04 陈坎生
-     * 包括用户的唯一标识（openid） 及本次登录的 会话密钥（session_key）等。
+     * 换取的登录信息包括用户的唯一标识（openid） 及本次登录的 会话密钥（session_key）等。
      * 用户数据的加解密通讯需要依赖会话密钥完成。
      * 注：调用 login 会引起登录态的刷新，之前的 sessionKey 可能会失效。
      * @param code 登录凭证
