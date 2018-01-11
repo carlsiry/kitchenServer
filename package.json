@@ -16,6 +16,7 @@
     "@nestjs/testing": "^4.4.0",
     "@nestjs/websockets": "^4.4.0",
     "@types/couchbase": "^2.1.30",
+    "axios": "^0.17.1",
     "couchbase": "^2.4.3",
     "jsonwebtoken": "^8.1.0",
     "passport": "^0.4.0",

@@ -36,4 +36,10 @@ export class AuthService {
         }
         return true;
     }
+    async findUser(openId: string) {
+        console.log('find user ->', openId);
+        const sqlstr = `select 
+            where className
+        `
+    }
 }
