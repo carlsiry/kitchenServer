@@ -9,7 +9,7 @@ import { config } from '../config/config.provider';
 
 // 取得环境配置并赋给常量
 // 本地数据库
-let localEnvironment = false;
+let localEnvironment = true;
 
 let endPoint: string = config.couchbase.endPoint;
 let username: string = config.couchbase.username;
@@ -49,7 +49,6 @@ export class DbService {
     /**
      * 执行n1ql语句，返回结果
      * @param sql语句
-     *
      */
     query(sql: string) {
         if (showQuery) {
@@ -72,7 +71,6 @@ export class DbService {
     /**
      * 根据ID获取文档
      * @param key
-     *
      */
     getById(key: string) {
         return new Promise((resolve, reject) => {

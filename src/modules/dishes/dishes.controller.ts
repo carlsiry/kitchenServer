@@ -1,17 +1,19 @@
 
 /**
  * 2018.01.05 增加扫码商家二维码参数获取菜单接口路由
+ * 2018.01.12 增加提交商品信息接口
  */
 
 import { DbService } from '../../database/db.service';
-import { Controller, Get, Inject, Query } from '@nestjs/common';
-
+import { Controller, Get, Inject, Query, Post, Body, HttpCode, HttpStatus } from '@nestjs/common';
+import * as uuid from 'uuid';
 
 @Controller('dishes')
 export class DishesController {
 
-    constructor(
-        private readonly dbService: DbService) {}
+    constructor (
+        private readonly dbService: DbService
+    ) {}
 
 
     /**
@@ -55,6 +57,23 @@ export class DishesController {
                 AND (DishesKindC.tasteList IS MISSING OR ARRAY_LENGTH(DishesKindC.tasteList) == 0)    
             ) b GROUP BY b.id,b.kindName
         `);
+    }
+
+
+    /**
+     * 提交商品信息 : 在本地数据库测试成功✅
+     * @param goods: Goods[]
+     * @return
+     */
+    @Post()
+    @HttpCode(HttpStatus.OK)
+    async addGoodsFromDishes(@Body("goods") goods) {
+        let upsertStr = "UPSERT INTO `travel-sample` (KEY, VALUE) ";
+        goods.forEach( (item, index) => {
+            upsertStr += `VALUES ("GoodsC.${uuid.v4()}", ${JSON.stringify(item)}), `
+        });
+        console.log(upsertStr);
+        // return await this.dbService.query(upsertStr.slice(0, -2));
     }
 
 
