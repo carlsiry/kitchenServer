@@ -3,8 +3,8 @@
  */
 export const config = {
     "couchbase": {
-        "endPoint": "couchbase://123.207.174.171",
-        // "endPoint": "couchbase://192.168.2.166",
+        // "endPoint": "couchbase://123.207.174.171",
+        "endPoint": "couchbase://192.168.2.166",
         "bucket": "kitchendb",
         "username": "sun",
         "password": "123456",

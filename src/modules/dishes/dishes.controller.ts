@@ -85,6 +85,7 @@ export class DishesController {
 }
 
 
+// #region
 /*
         return await this.dbService.query(`
             SELECT DishesKindC.kindName, meta(DishesKindC).id,
@@ -99,4 +100,5 @@ export class DishesController {
                 WHERE DishesKindC.className = "DishesKindC" and DishesKindC.channelId="${channelId}"
         `);
 */
+// endregion
 
